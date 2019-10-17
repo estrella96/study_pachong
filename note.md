@@ -201,6 +201,85 @@
     - requests.request("get",url)
     - 可以带有headers和parmas参数
     - get 返回内容 11.py
+- post请求 12.py
+    - rsp=requests.post(url,data=data)
+    - data,headers要求dict类型 不需要转码
+- proxy 代理
+    proxies={
+    "http":"address of proxy"
+    "https":"address of proxy"}
     
+# 页面解析和数据提取
+- 结构数据：先有结构，再谈数据
+    - JSON文件
+        转换成Python类型操作 json类
+    - XML文件
+        转换成Python类型xmltodict
+        XPath
+        CSS选择器
+        正则
+- 非结构数据：先有数据 再谈结构
+    - 文本 电话号码 邮箱地址
+        通常用正则表达式处理
+    - HTML文件
+        正则表达式 XPath CSS选择器
+    
+##正则表达式
+- 一套规则 可以在字符串文本中进行搜查替换
+- re基本使用流程
+- match使用 13.py
+- 正则常用方法
+    - match：从开始位置开始查找 一次匹配
+    - search：从任何位置开始查找 一次匹配
+    - findall: 全部匹配 返回列表
+    - finditer：全部匹配 返回迭代器
+    - split：分割字符串 返回列表
+    - sub：替换
+- 匹配中文 14.py
+    - 中文unicode编码范围[u4e00-u9fa5]
+- 贪婪与非贪婪模式
+    - 贪婪模式：在整个表达式匹配成功的前提下 尽可能多的匹配
+    - 非贪婪：。。。。尽可能少的匹配
+    - python默认贪婪模式
 
-    
+## XML  15.xml
+- 可扩展的标记性语言 为了传输数据 W3school
+
+## XPath
+- XML Path Language XML中查找信息
+- W3school
+- XPath 开发工具 
+    XMLQuire 
+    Chrome: Xpath Helper
+- 常用路径表达式 
+    - nodename：节点的所有子节点
+    - /: 从根节点开始选
+    - //: 选取元素 不考虑元素的具体位置
+    - .: 当前节点
+    - ..: 父节点
+    - @ ：
+    - 例子
+        - bookstore：选取所有子节点
+        - /bookstore: 选取根元素
+        - bookstore/book: 选取bookstore的所有为book的子元素
+        - //book :选取book
+        - //@lang:选取名称为lang的所有属性
+- 谓语 Predicate
+    - 查找某个特定节点  卸载方括号中
+    - /bookstore/book[1]:选第一个book
+    - /bookstore/book[last()]
+    - /bookstore/book[position()<3]:前两个
+    -/bookstore/book[@lang="cn"]
+- 通配符
+    - * : 任何元素节点
+    - @*：匹配任何属性节点
+    - node():匹配任何类型节点
+- 选取多个路径
+    - | 或者
+
+## lxml 类
+- python 的html/xml解析器
+- http://lxml.de/index.html
+- 功能
+    1 解析html 16.py
+    2 文件读取 17.html 18.py
